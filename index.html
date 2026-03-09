@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopVercel | AI Agent Development & Consulting</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;600&family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', '"Noto Serif JP"', 'serif'],
+                        sans: ['"Inter"', '"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-black': '#0a0a0a',
+                        'brand-gray': '#1f1f1f',
+                        'brand-light': '#f4f4f5',
+                        'brand-accent': '#d4af37', // 控えめなゴールド
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f4f4f5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Three.js Canvas Background */
+        #webgl-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none; /* クリックを下の要素にパスする */
+            opacity: 0.8;
+        }
+
+        /* 雑誌のようなレイアウトのためのユーティリティ */
+        .magazine-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+
+        /* アニメーション用クラス */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* テキストの選択色 */
+        ::selection {
+            background: #f4f4f5;
+            color: #0a0a0a;
+        }
+        
+        /* 装飾的なライン */
+        .decorative-line {
+            width: 1px;
+            height: 100px;
+            background: rgba(244, 244, 245, 0.2);
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-brand-light">
+
+    <!-- Three.js Canvas -->
+    <div id="webgl-container"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full p-6 md:p-12 z-50 flex justify-between items-center mix-blend-difference">
+        <a href="#" class="font-serif text-2xl tracking-widest font-semibold uppercase">TopVercel</a>
+        <div class="hidden md:flex gap-8 font-sans text-sm tracking-widest uppercase">
+            <a href="#about" class="hover:text-gray-400 transition-colors">About</a>
+            <a href="#services" class="hover:text-gray-400 transition-colors">Services</a>
+            <a href="#contact" class="hover:text-gray-400 transition-colors">Contact</a>
+        </div>
+        <!-- Mobile menu button (visual only for this demo) -->
+        <button class="md:hidden text-brand-light">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center relative px-6 md:px-12 pt-24">
+        <div class="text-center fade-up max-w-5xl mx-auto">
+            <p class="font-sans text-xs md:text-sm tracking-[0.3em] uppercase mb-6 text-gray-400">The Next Era of Intelligence</p>
+            <h1 class="font-serif text-5xl md:text-8xl lg:text-9xl leading-tight mb-8 font-light">
+                Intelligence,<br>
+                <span class="italic text-gray-300">Crafted.</span>
+            </h1>
+            <p class="font-serif text-lg md:text-2xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                自律的に思考し、行動する。<br>
+                AIエージェントが、あなたのビジネスの次なる文脈を創る。
+            </p>
+        </div>
+        
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center fade-up">
+            <span class="font-sans text-[10px] tracking-widest uppercase mb-4 text-gray-500">Scroll to explore</span>
+            <div class="w-[1px] h-16 bg-gradient-to-b from-gray-500 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 md:py-48 px-6 md:px-12 relative bg-brand-black/50 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto magazine-grid">
+            <div class="col-span-12 md:col-span-5 fade-up">
+                <h2 class="font-serif text-4xl md:text-6xl mb-8 leading-tight">
+                    Beyond <br>Automation.
+                </h2>
+                <div class="w-12 h-[1px] bg-brand-light mb-8"></div>
+            </div>
+            <div class="col-span-12 md:col-span-7 md:pl-12 flex flex-col justify-center fade-up" style="transition-delay: 0.2s;">
+                <p class="font-sans text-lg md:text-xl leading-loose text-gray-300 mb-8 font-light">
+                    TopVercelは、AIエージェント特化の受託開発および戦略コンサルティングファームです。
+                </p>
+                <p class="font-sans text-base leading-loose text-gray-400 mb-8">
+                    単なる定型業務の自動化（RPA）や、一問一答のチャットボットの時代は終わりました。私たちが提供するのは、最新の大規模言語モデル（LLM）を核とし、ツールを駆使し、自律的に計画を立てて目標を達成する「AIエージェント」です。
+                </p>
+                <p class="font-sans text-base leading-loose text-gray-400">
+                    最先端の研究論文から得た知見と、確かなエンジニアリング力を融合させ、貴社のビジネスプロセスにパラダイムシフトをもたらす、真の「知的労働のパートナー」を実装します。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Decor line -->
+    <div class="decorative-line"></div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-32 md:py-48 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24 fade-up">
+                <span class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500">Our Expertise</span>
+                <h2 class="font-serif text-4xl md:text-6xl mt-4">Services</h2>
+            </div>
+
+            <div class="space-y-32">
+                <!-- Service 1 -->
+                <div class="magazine-grid items-center fade-up">
+                    <div class="col-span-12 md:col-span-5 md:col-start-2 order-2 md:order-1">
+                        <span class="font-serif text-6xl text-gray-800 absolute -mt-10 -ml-6 -z-10">01</span>
+                        <h3 class="font-serif text-3xl mb-4">Custom AI Agent<br>Development</h3>
+                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">自律型AIエージェント受託開発</p>
+                        <p class="font-sans text-gray-400 leading-relaxed">
+                            貴社固有のドメイン知識を統合し、特定のタスクを自律的に遂行するAIエージェントシステムをスクラッチで開発します。LangChain, LlamaIndex等のフレームワークを駆使し、社内APIやデータベースと連携した実用的なシステムを構築します。
+                        </p>
+                    </div>
+                    <div class="col-span-12 md:col-span-5 md:col-start-8 order-1 md:order-2 mb-8 md:mb-0">
+                        <!-- Abstract Visual Box -->
+                        <div class="w-full aspect-square border border-gray-800 bg-brand-gray/30 flex items-center justify-center relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-gray-800/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">Architecture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="magazine-grid items-center fade-up">
+                    <div class="col-span-12 md:col-span-5 md:col-start-2 mb-8 md:mb-0">
+                         <!-- Abstract Visual Box -->
+                         <div class="w-full aspect-square border border-gray-800 bg-brand-gray/30 flex items-center justify-center relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-gradient-to-bl from-transparent via-gray-800/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">Strategy</span>
+                        </div>
+                    </div>
+                    <div class="col-span-12 md:col-span-5 md:col-start-8">
+                        <span class="font-serif text-6xl text-gray-800 absolute -mt-10 -ml-6 -z-10">02</span>
+                        <h3 class="font-serif text-3xl mb-4">AI Strategy<br>Consulting</h3>
+                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">AI戦略コンサルティング</p>
+                        <p class="font-sans text-gray-400 leading-relaxed">
+                            AI技術をいかにして自社の競争優位性に結びつけるか。技術選定からROIの算出、組織への導入プロセスまで、経営層と伴走しながら最適なAI導入ロードマップを策定します。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="magazine-grid items-center fade-up">
+                    <div class="col-span-12 md:col-span-5 md:col-start-2 order-2 md:order-1">
+                        <span class="font-serif text-6xl text-gray-800 absolute -mt-10 -ml-6 -z-10">03</span>
+                        <h3 class="font-serif text-3xl mb-4">Proof of Concept<br>(PoC)</h3>
+                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">技術検証・プロトタイピング</p>
+                        <p class="font-sans text-gray-400 leading-relaxed">
+                            本格的な開発に入る前に、アイデアの実現可能性を短期間で検証します。最新のLLMモデルの性能評価や、限定的な機能を持つプロトタイプを構築し、投資リスクを最小限に抑えます。
+                        </p>
+                    </div>
+                    <div class="col-span-12 md:col-span-5 md:col-start-8 order-1 md:order-2 mb-8 md:mb-0">
+                        <!-- Abstract Visual Box -->
+                        <div class="w-full aspect-square border border-gray-800 bg-brand-gray/30 flex items-center justify-center relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-gradient-to-br from-transparent via-gray-800/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">Experiment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Quote -->
+    <section class="py-32 bg-brand-gray/20 border-y border-gray-900">
+        <div class="max-w-4xl mx-auto px-6 text-center fade-up">
+            <p class="font-serif text-2xl md:text-4xl leading-relaxed italic text-gray-300">
+                "We don't just write code.<br>
+                We architect the minds of tomorrow's enterprises."
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 md:py-48 px-6 md:px-12 relative">
+        <div class="max-w-3xl mx-auto text-center fade-up">
+            <h2 class="font-serif text-4xl md:text-6xl mb-8">Initiate<br>a Project.</h2>
+            <p class="font-sans text-gray-400 mb-12 leading-relaxed">
+                次世代のAIエージェントによる業務革新について、<br class="hidden md:block">
+                まずは一度、ご相談ください。
+            </p>
+            
+            <form class="space-y-8 text-left border border-gray-800 p-8 md:p-12 bg-brand-black/50 backdrop-blur-md">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border-b border-gray-800 pb-2">
+                        <label class="block font-sans text-xs tracking-widest text-gray-500 uppercase mb-2">Name</label>
+                        <input type="text" class="w-full bg-transparent border-none outline-none text-brand-light font-serif text-lg placeholder-gray-700" placeholder="Your Name">
+                    </div>
+                    <div class="border-b border-gray-800 pb-2">
+                        <label class="block font-sans text-xs tracking-widest text-gray-500 uppercase mb-2">Company</label>
+                        <input type="text" class="w-full bg-transparent border-none outline-none text-brand-light font-serif text-lg placeholder-gray-700" placeholder="Company Name">
+                    </div>
+                </div>
+                <div class="border-b border-gray-800 pb-2">
+                    <label class="block font-sans text-xs tracking-widest text-gray-500 uppercase mb-2">Email</label>
+                    <input type="email" class="w-full bg-transparent border-none outline-none text-brand-light font-serif text-lg placeholder-gray-700" placeholder="your@email.com">
+                </div>
+                <div class="border-b border-gray-800 pb-2">
+                    <label class="block font-sans text-xs tracking-widest text-gray-500 uppercase mb-2">Project Details</label>
+                    <textarea class="w-full bg-transparent border-none outline-none text-brand-light font-serif text-lg placeholder-gray-700 resize-none h-24" placeholder="Briefly describe your challenge..."></textarea>
+                </div>
+                
+                <div class="pt-6 text-center">
+                    <button type="button" class="font-sans text-sm tracking-[0.2em] uppercase text-brand-black bg-brand-light py-4 px-12 hover:bg-gray-300 transition-colors duration-300">
+                        Send Inquiry
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center text-xs font-sans tracking-widest text-gray-600 uppercase">
+        <p>&copy; 2026 TopVercel Inc. All Rights Reserved.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+            <a href="#" class="hover:text-brand-light transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-brand-light transition-colors">Terms of Service</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- Intersection Observer for Fade-up Animation ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-up');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+
+        // --- Three.js Background Animation ---
+        window.addEventListener('load', initThreeJS);
+
+        function initThreeJS() {
+            const container = document.getElementById('webgl-container');
+            
+            // Scene setup
+            const scene = new THREE.Scene();
+            // Fogを追加して奥の方をフェードアウトさせ、奥行きを出す
+            scene.fog = new THREE.FogExp2(0x0a0a0a, 0.0015);
+
+            // Camera setup
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+
+            // Renderer setup
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // パフォーマンスのための制限
+            container.appendChild(renderer.domElement);
+
+            // --- Objects ---
+            const objects = [];
+
+            // 1. 中心となる幾何学オブジェクト（知性の核）
+            // Icosahedron (正二十面体) を少し細かくしたものをワイヤーフレームで表現
+            const coreGeometry = new THREE.IcosahedronGeometry(10, 2);
+            
+            // エレガントなマテリアル
+            const coreMaterial = new THREE.MeshBasicMaterial({
+                color: 0xcccccc,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.15
+            });
+            const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
+            scene.add(coreMesh);
+            objects.push({ mesh: coreMesh, rotX: 0.001, rotY: 0.002 });
+
+            // 2. 内側のソリッドなオブジェクト
+            const innerGeometry = new THREE.IcosahedronGeometry(7, 1);
+            const innerMaterial = new THREE.MeshStandardMaterial({
+                color: 0x111111,
+                roughness: 0.7,
+                metalness: 0.3,
+                flatShading: true
+            });
+            const innerMesh = new THREE.Mesh(innerGeometry, innerMaterial);
+            scene.add(innerMesh);
+            objects.push({ mesh: innerMesh, rotX: -0.002, rotY: -0.001 });
+
+            // 3. パーティクルシステム（エージェントのネットワーク・データの流れ）
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 2000;
+            const posArray = new Float32Array(particlesCount * 3);
+
+            for(let i = 0; i < particlesCount * 3; i++) {
+                // 球状に広がるように配置
+                const radius = 15 + Math.random() * 20;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(Math.random() * 2 - 1);
+                
+                posArray[i*3] = radius * Math.sin(phi) * Math.cos(theta);     // x
+                posArray[i*3+1] = radius * Math.sin(phi) * Math.sin(theta);   // y
+                posArray[i*3+2] = radius * Math.cos(phi);                     // z
+            }
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.05,
+                color: 0xffffff,
+                transparent: true,
+                opacity: 0.4,
+                blending: THREE.AdditiveBlending
+            });
+
+            const particleMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particleMesh);
+
+            // --- Lights ---
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+
+            const pointLight = new THREE.PointLight(0xffffff, 1);
+            pointLight.position.set(20, 20, 20);
+            scene.add(pointLight);
+
+            const pointLight2 = new THREE.PointLight(0x555555, 2);
+            pointLight2.position.set(-20, -20, 20);
+            scene.add(pointLight2);
+
+
+            // --- Interaction ---
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX - windowHalfX);
+                mouseY = (event.clientY - windowHalfY);
+            });
+
+            let scrollY = window.scrollY;
+            window.addEventListener('scroll', () => {
+                scrollY = window.scrollY;
+            });
+
+
+            // --- Animation Loop ---
+            const clock = new THREE.Clock();
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                const elapsedTime = clock.getElapsedTime();
+
+                // マウスの動きに遅れて追従させる（慣性）
+                targetX = mouseX * 0.001;
+                targetY = mouseY * 0.001;
+
+                // オブジェクトの回転
+                objects.forEach(obj => {
+                    obj.mesh.rotation.x += obj.rotX;
+                    obj.mesh.rotation.y += obj.rotY;
+                });
+
+                // パーティクルのゆっくりとした回転
+                particleMesh.rotation.y = elapsedTime * 0.05;
+                particleMesh.rotation.x = elapsedTime * 0.02;
+
+                // カメラの微細な動き（マウスとスクロールに反応）
+                // スクロールでカメラを少し下に向け、後ろに引く
+                camera.position.x += (mouseX * 0.01 - camera.position.x) * 0.05;
+                camera.position.y += (-mouseY * 0.01 - (scrollY * 0.01) - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // --- Resize handler ---
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+    </script>
+</body>
+</html>
