@@ -89,6 +89,67 @@
             background: rgba(244, 244, 245, 0.2);
             margin: 0 auto;
         }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 220px;
+            padding: 1rem 2rem;
+            border: 1px solid #f4f4f5;
+            background: #f4f4f5;
+            color: #0a0a0a;
+            font-size: 0.75rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #d4d4d8;
+            border-color: #d4d4d8;
+        }
+
+        .stack-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.85rem 1rem;
+            border: 1px solid rgba(63, 63, 70, 0.9);
+            background: rgba(10, 10, 10, 0.55);
+            color: #d4d4d8;
+            font-size: 0.68rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .info-card {
+            border: 1px solid rgba(39, 39, 42, 0.95);
+            background: rgba(10, 10, 10, 0.45);
+            backdrop-filter: blur(16px);
+            padding: 1.75rem;
+        }
+
+        .service-list li {
+            position: relative;
+            padding-left: 1rem;
+            color: #a1a1aa;
+        }
+
+        .service-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.8rem;
+            width: 0.35rem;
+            height: 1px;
+            background: rgba(244, 244, 245, 0.35);
+        }
+
+        @media (max-width: 768px) {
+            .info-card {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-brand-light">
@@ -118,15 +179,55 @@
                 Intelligence,<br>
                 <span class="italic text-gray-300">Crafted.</span>
             </h1>
-            <p class="font-serif text-lg md:text-2xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                自律的に思考し、行動する。<br>
-                AIエージェントが、あなたのビジネスの次なる文脈を創る。
+            <p class="font-serif text-lg md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                営業、SEO、社内ナレッジ活用を、<br>
+                実務で回る仕組みに。
             </p>
+            <p class="font-sans text-sm md:text-base text-gray-500 max-w-3xl mx-auto leading-relaxed mt-6">
+                OpenClaw / Claude Code / ChatGPT / Gemini / Manus を業務に接続し、営業自動化、SEO・コンテンツ運用、社内ナレッジ検索、業務フロー構築まで設計・実装します。
+            </p>
+            <p class="font-sans text-sm md:text-base text-gray-500 max-w-2xl mx-auto leading-relaxed mt-4">
+                従業員10〜300名規模のBtoB企業に向けて、PoCから本番導入、運用改善まで支援します。
+            </p>
+            <div class="mt-10 flex justify-center">
+                <a href="#contact" class="cta-button">無料相談を予約する</a>
+            </div>
         </div>
         
         <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center fade-up">
             <span class="font-sans text-[10px] tracking-widest uppercase mb-4 text-gray-500">Scroll to explore</span>
             <div class="w-[1px] h-16 bg-gradient-to-b from-gray-500 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- AI Stack Section -->
+    <section id="stack" class="py-16 md:py-20 px-6 md:px-12 relative border-y border-gray-900 bg-brand-black/40 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-4xl mx-auto fade-up">
+                <span class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500">AI Stack</span>
+                <h2 class="font-serif text-3xl md:text-5xl mt-4 mb-6">対応AI・対応基盤</h2>
+                <p class="font-sans text-base leading-loose text-gray-400">
+                    OpenClaw、Claude Code、ChatGPT、Gemini、Manus、MCPを中核に、Ahrefs、Google Analytics、Search Console、Slack、Notion、Google Workspace、CRM / API連携まで対応します。<br class="hidden md:block">
+                    ツールを並べるのではなく、対象業務に合わせて選定し、運用までつながる構成で実装します。
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4 mt-10 fade-up" style="transition-delay: 0.15s;">
+                <span class="stack-badge">OpenClaw</span>
+                <span class="stack-badge">Claude Code</span>
+                <span class="stack-badge">ChatGPT</span>
+                <span class="stack-badge">Gemini</span>
+                <span class="stack-badge">Manus</span>
+                <span class="stack-badge">MCP</span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4 mt-4 fade-up" style="transition-delay: 0.3s;">
+                <span class="stack-badge">Ahrefs</span>
+                <span class="stack-badge">Google Analytics</span>
+                <span class="stack-badge">Search Console</span>
+                <span class="stack-badge">Slack</span>
+                <span class="stack-badge">Notion</span>
+                <span class="stack-badge">Google Workspace</span>
+                <span class="stack-badge">CRM / API</span>
+            </div>
         </div>
     </section>
 
@@ -141,14 +242,28 @@
             </div>
             <div class="col-span-12 md:col-span-7 md:pl-12 flex flex-col justify-center fade-up" style="transition-delay: 0.2s;">
                 <p class="font-sans text-lg md:text-xl leading-loose text-gray-300 mb-8 font-light">
-                    TopVercelは、AIエージェント特化の受託開発および戦略コンサルティングファームです。
+                    TopVercelは、AIエージェントの受託開発と導入支援を行うBtoB向けパートナーです。
                 </p>
-                <p class="font-sans text-base leading-loose text-gray-400 mb-8">
-                    単なる定型業務の自動化（RPA）や、一問一答のチャットボットの時代は終わりました。私たちが提供するのは、最新の大規模言語モデル（LLM）を核とし、ツールを駆使し、自律的に計画を立てて目標を達成する「AIエージェント」です。
+                <p class="font-sans text-base leading-loose text-gray-400 mb-6">
+                    営業活動、SEO・コンテンツ運用、社内ナレッジ検索、問い合わせ支援、社内ワークフロー整備を対象に、診断・設計からPoC、本番導入、運用改善まで支援します。
                 </p>
                 <p class="font-sans text-base leading-loose text-gray-400">
-                    最先端の研究論文から得た知見と、確かなエンジニアリング力を融合させ、貴社のビジネスプロセスにパラダイムシフトをもたらす、真の「知的労働のパートナー」を実装します。
+                    重要なのは、AIを入れることではなく、どの業務で、どの情報を使い、どこまでをAIに任せ、どこで人が確認するかを整えることです。TopVercelは、その設計と実装を一体で行います。
                 </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+                    <div class="border-t border-gray-800 pt-4">
+                        <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">Target</p>
+                        <p class="font-sans text-sm leading-relaxed text-gray-400">10〜300名規模のスタートアップ、中小企業、SaaS / IT企業、BtoBサービス企業。</p>
+                    </div>
+                    <div class="border-t border-gray-800 pt-4">
+                        <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">Focus</p>
+                        <p class="font-sans text-sm leading-relaxed text-gray-400">営業自動化、社内ナレッジ検索 / RAG、OpenClaw / Claude Code導入の相談が中心です。</p>
+                    </div>
+                    <div class="border-t border-gray-800 pt-4">
+                        <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">Scope</p>
+                        <p class="font-sans text-sm leading-relaxed text-gray-400">診断・設計、PoC、本番導入、運用改善まで段階的に支援します。</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -162,76 +277,294 @@
             <div class="text-center mb-24 fade-up">
                 <span class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500">Our Expertise</span>
                 <h2 class="font-serif text-4xl md:text-6xl mt-4">Services</h2>
+                <p class="font-sans text-base leading-loose text-gray-400 max-w-3xl mx-auto mt-8">
+                    提供内容は、ツール単位ではなく業務単位で整理しています。<br class="hidden md:block">
+                    少人数でも継続運用できることを前提に、成果につながりやすいテーマから段階的に設計します。
+                </p>
             </div>
 
             <div class="space-y-32">
-                <!-- Service 1 -->
                 <div class="magazine-grid items-center fade-up">
                     <div class="col-span-12 md:col-span-5 md:col-start-2 order-2 md:order-1">
                         <span class="font-serif text-6xl text-gray-800 absolute -mt-10 -ml-6 -z-10">01</span>
-                        <h3 class="font-serif text-3xl mb-4">Custom AI Agent<br>Development</h3>
-                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">自律型AIエージェント受託開発</p>
+                        <h3 class="font-serif text-3xl mb-4">Code<br>Enablement.</h3>
+                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">OpenClaw / Claude Code導入・活用支援</p>
                         <p class="font-sans text-gray-400 leading-relaxed">
-                            貴社固有のドメイン知識を統合し、特定のタスクを自律的に遂行するAIエージェントシステムをスクラッチで開発します。LangChain, LlamaIndex等のフレームワークを駆使し、社内APIやデータベースと連携した実用的なシステムを構築します。
+                            開発、調査、ドキュメント整備、提案資料作成を、個人の使いこなしではなくチームの運用フローに組み込みます。OpenClawの構築支援、体制設計、活用コンサル、Claude Code導入支援まで行い、AI利用を日常業務に定着させます。
                         </p>
+                        <ul class="service-list space-y-3 mt-8 text-sm">
+                            <li>OpenClaw構築支援</li>
+                            <li>OpenClaw体制構築支援コンサル</li>
+                            <li>OpenClaw活用コンサル</li>
+                            <li>Claude Code導入支援</li>
+                        </ul>
                     </div>
                     <div class="col-span-12 md:col-span-5 md:col-start-8 order-1 md:order-2 mb-8 md:mb-0">
-                        <!-- Abstract Visual Box -->
                         <div class="w-full aspect-square border border-gray-800 bg-brand-gray/30 flex items-center justify-center relative overflow-hidden group">
                             <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-gray-800/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">Architecture</span>
+                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">OpenClaw / Claude Code</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Service 2 -->
                 <div class="magazine-grid items-center fade-up">
                     <div class="col-span-12 md:col-span-5 md:col-start-2 mb-8 md:mb-0">
-                         <!-- Abstract Visual Box -->
-                         <div class="w-full aspect-square border border-gray-800 bg-brand-gray/30 flex items-center justify-center relative overflow-hidden group">
+                        <div class="w-full aspect-square border border-gray-800 bg-brand-gray/30 flex items-center justify-center relative overflow-hidden group">
                             <div class="absolute inset-0 bg-gradient-to-bl from-transparent via-gray-800/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">Strategy</span>
+                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">Revenue Systems</span>
                         </div>
                     </div>
                     <div class="col-span-12 md:col-span-5 md:col-start-8">
                         <span class="font-serif text-6xl text-gray-800 absolute -mt-10 -ml-6 -z-10">02</span>
-                        <h3 class="font-serif text-3xl mb-4">AI Strategy<br>Consulting</h3>
-                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">AI戦略コンサルティング</p>
+                        <h3 class="font-serif text-3xl mb-4">Revenue<br>Flow.</h3>
+                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">営業自動化支援</p>
                         <p class="font-sans text-gray-400 leading-relaxed">
-                            AI技術をいかにして自社の競争優位性に結びつけるか。技術選定からROIの算出、組織への導入プロセスまで、経営層と伴走しながら最適なAI導入ロードマップを策定します。
+                            見込み顧客の抽出、接触、送信オペレーション、履歴管理、初回提案準備までを分断せずに設計します。フォーム営業やLinkedIn DMを単発施策で終わらせず、少人数でも接触数と品質を維持しやすい営業フローへ整えます。
                         </p>
+                        <ul class="service-list space-y-3 mt-8 text-sm">
+                            <li>フォーム営業自動化支援</li>
+                            <li>LinkedIn DM営業自動化支援</li>
+                            <li>CRM / API連携支援</li>
+                            <li>提案資料・スライド作成効率化支援</li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Service 3 -->
                 <div class="magazine-grid items-center fade-up">
                     <div class="col-span-12 md:col-span-5 md:col-start-2 order-2 md:order-1">
                         <span class="font-serif text-6xl text-gray-800 absolute -mt-10 -ml-6 -z-10">03</span>
-                        <h3 class="font-serif text-3xl mb-4">Proof of Concept<br>(PoC)</h3>
-                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">技術検証・プロトタイピング</p>
+                        <h3 class="font-serif text-3xl mb-4">Content<br>Operations.</h3>
+                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">SEO・コンテンツ運用自動化支援</p>
                         <p class="font-sans text-gray-400 leading-relaxed">
-                            本格的な開発に入る前に、アイデアの実現可能性を短期間で検証します。最新のLLMモデルの性能評価や、限定的な機能を持つプロトタイプを構築し、投資リスクを最小限に抑えます。
+                            OpenClaw または Claude Code と Ahrefs / Google Analytics / Search Console を接続し、調査、企画、改善示唆、投稿までの流れを整えます。記事単体の作成ではなく、継続的に回るコンテンツ運用体制を設計する支援です。
                         </p>
+                        <ul class="service-list space-y-3 mt-8 text-sm">
+                            <li>SEO調査・記事企画自動化</li>
+                            <li>OpenClaw or Claude Code × Ahrefs / GA 連携によるSEO運用支援</li>
+                            <li>X / Threads / Instagram 自動投稿体制構築支援</li>
+                            <li>レポーティング / 共有フロー整備</li>
+                        </ul>
                     </div>
                     <div class="col-span-12 md:col-span-5 md:col-start-8 order-1 md:order-2 mb-8 md:mb-0">
-                        <!-- Abstract Visual Box -->
                         <div class="w-full aspect-square border border-gray-800 bg-brand-gray/30 flex items-center justify-center relative overflow-hidden group">
                             <div class="absolute inset-0 bg-gradient-to-br from-transparent via-gray-800/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">Experiment</span>
+                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">Ahrefs / GA / Search Console</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="magazine-grid items-center fade-up">
+                    <div class="col-span-12 md:col-span-5 md:col-start-2 mb-8 md:mb-0">
+                        <div class="w-full aspect-square border border-gray-800 bg-brand-gray/30 flex items-center justify-center relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-gradient-to-bl from-transparent via-gray-800/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">Slack / Notion / MCP</span>
+                        </div>
+                    </div>
+                    <div class="col-span-12 md:col-span-5 md:col-start-8">
+                        <span class="font-serif text-6xl text-gray-800 absolute -mt-10 -ml-6 -z-10">04</span>
+                        <h3 class="font-serif text-3xl mb-4">Knowledge<br>Systems.</h3>
+                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">AIエージェント / RAG構築支援</p>
+                        <p class="font-sans text-gray-400 leading-relaxed">
+                            社内に散在するドキュメント、FAQ、議事録、ナレッジを横断し、必要な情報に届く業務導線を設計します。社内ナレッジ検索、FAQ支援、MCP接続、社内AIポータルまで、検索だけで終わらない実務基盤を構築します。
+                        </p>
+                        <ul class="service-list space-y-3 mt-8 text-sm">
+                            <li>社内ナレッジ検索 / RAG基盤構築</li>
+                            <li>FAQ / 問い合わせ支援</li>
+                            <li>MCP接続・社内ツール連携支援</li>
+                            <li>社内AIポータル / Agent Hub構築支援</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="magazine-grid items-center fade-up">
+                    <div class="col-span-12 md:col-span-5 md:col-start-2 order-2 md:order-1">
+                        <span class="font-serif text-6xl text-gray-800 absolute -mt-10 -ml-6 -z-10">05</span>
+                        <h3 class="font-serif text-3xl mb-4">Governance<br>Layer.</h3>
+                        <p class="font-sans text-sm tracking-widest text-gray-500 mb-6 uppercase">AI運用基盤・ガバナンス支援</p>
+                        <p class="font-sans text-gray-400 leading-relaxed">
+                            AIを業務に組み込んだ後に必要になるのは、品質、権限、コスト、利用責任の整理です。評価・監視・ガードレール、AI Gateway、利用規程整備まで含め、PoCで終わらない運用基盤を整えます。
+                        </p>
+                        <ul class="service-list space-y-3 mt-8 text-sm">
+                            <li>AI評価・監視・ガードレール導入支援</li>
+                            <li>AI Gateway / コスト最適化支援</li>
+                            <li>AIガバナンス・利用規程整備支援</li>
+                            <li>権限管理 / ログ / 運用ルール整備</li>
+                        </ul>
+                    </div>
+                    <div class="col-span-12 md:col-span-5 md:col-start-8 order-1 md:order-2 mb-8 md:mb-0">
+                        <div class="w-full aspect-square border border-gray-800 bg-brand-gray/30 flex items-center justify-center relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-gray-800/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <span class="font-serif text-gray-600 text-sm tracking-widest uppercase">Quality / Guardrails</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="text-center mt-24 fade-up">
+                <a href="#contact" class="cta-button">無料相談を予約する</a>
+            </div>
         </div>
     </section>
 
-    <!-- Philosophy Quote -->
+    <!-- Project Examples -->
+    <section id="projects" class="py-32 md:py-40 px-6 md:px-12 border-t border-gray-900 bg-brand-black/35 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-4xl mx-auto fade-up">
+                <span class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500">Project Examples</span>
+                <h2 class="font-serif text-4xl md:text-6xl mt-4">参考プロジェクト例</h2>
+                <p class="font-sans text-base leading-loose text-gray-400 mt-8">
+                    以下は導入事例ではなく、相談が多いテーマを整理した参考プロジェクト例です。<br class="hidden md:block">
+                    対象業務、利用中ツール、社内データの扱いに応じて構成を調整します。
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 mt-16">
+                <div class="border-t border-gray-800 pt-5 fade-up">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">01</p>
+                    <h3 class="font-serif text-2xl mb-4">社内ナレッジ検索 / RAG基盤構築</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">Notion、Slack、Google Workspaceなどを横断し、必要情報へ到達しやすくする検索基盤を設計します。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.1s;">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">02</p>
+                    <h3 class="font-serif text-2xl mb-4">フォーム営業自動化</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">ターゲット整備から送信、履歴管理、例外対応まで含め、継続接触しやすい営業フローに整えます。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.15s;">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">03</p>
+                    <h3 class="font-serif text-2xl mb-4">LinkedIn DM営業自動化</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">候補抽出、文面下書き、送信オペレーションを標準化し、属人化しやすい接触業務を整理します。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.2s;">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">04</p>
+                    <h3 class="font-serif text-2xl mb-4">SEO調査・記事企画自動化</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">Ahrefs / GA / Search Console を起点に、調査・企画・改善の往復を回しやすくします。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.25s;">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">05</p>
+                    <h3 class="font-serif text-2xl mb-4">SNS投稿運用自動化</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">X / Threads / Instagram の投稿案作成、承認、投稿計画を整理し、継続運用しやすい形にします。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.3s;">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">06</p>
+                    <h3 class="font-serif text-2xl mb-4">提案資料・スライド作成効率化</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">ヒアリング内容から骨子、構成、たたき台作成までを支援し、提案準備の負荷を抑えます。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.35s;">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">07</p>
+                    <h3 class="font-serif text-2xl mb-4">AI評価・監視・ガードレール導入</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">品質基準、禁止事項、確認フローを明文化し、継続運用しやすいルールへ落とし込みます。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.4s;">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-3">08</p>
+                    <h3 class="font-serif text-2xl mb-4">MCP接続・社内ツール連携</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">CRMや社内ツールと接続し、参照範囲、権限、運用ルールまで整理した実装を行います。</p>
+                </div>
+            </div>
+            <div class="text-center mt-20 fade-up">
+                <a href="#contact" class="cta-button">無料相談を予約する</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-32 md:py-40 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-4xl mx-auto fade-up">
+                <span class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500">Pricing Approach</span>
+                <h2 class="font-serif text-4xl md:text-6xl mt-4">価格の考え方</h2>
+                <p class="font-sans text-base leading-loose text-gray-400 mt-8">
+                    まず診断・設計で対象業務を絞り、必要に応じてPoCを挟み、本番導入と運用改善へ進みます。<br class="hidden md:block">
+                    価格は、対象業務の数、連携ツール、社内データの扱い、権限要件、運用範囲により変動します。
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+                <div class="info-card fade-up">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-4">Assessment / Design</p>
+                    <h3 class="font-serif text-3xl mb-4">診断・設計</h3>
+                    <p class="font-serif text-2xl text-gray-200 mb-5">15万〜30万円</p>
+                    <p class="font-sans text-sm leading-loose text-gray-400">現状把握、対象業務選定、要件整理、導入方針の提示を行います。最小構成から開始しやすい段階です。</p>
+                </div>
+                <div class="info-card fade-up" style="transition-delay: 0.1s;">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-4">Proof of Concept</p>
+                    <h3 class="font-serif text-3xl mb-4">PoC</h3>
+                    <p class="font-serif text-2xl text-gray-200 mb-5">80万〜150万円</p>
+                    <p class="font-sans text-sm leading-loose text-gray-400">限定業務での試作、モデル選定、連携検証、評価観点の整理を行い、次の投資判断をしやすくします。</p>
+                </div>
+                <div class="info-card fade-up" style="transition-delay: 0.15s;">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-4">Production Rollout</p>
+                    <h3 class="font-serif text-3xl mb-4">本番導入</h3>
+                    <p class="font-serif text-2xl text-gray-200 mb-5">200万〜600万円</p>
+                    <p class="font-sans text-sm leading-loose text-gray-400">ワークフロー実装、RAG / CRM / Slack / Notion連携、権限設計、運用体制整備まで行います。</p>
+                </div>
+                <div class="info-card fade-up" style="transition-delay: 0.2s;">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500 mb-4">Continuous Improvement</p>
+                    <h3 class="font-serif text-3xl mb-4">運用改善</h3>
+                    <p class="font-serif text-2xl text-gray-200 mb-5">月15万〜40万円</p>
+                    <p class="font-sans text-sm leading-loose text-gray-400">品質改善、コスト管理、フロー更新、監視を継続し、現場で使い続けられる状態を整えます。</p>
+                </div>
+            </div>
+            <p class="font-sans text-sm leading-loose text-gray-500 max-w-3xl mx-auto text-center mt-10 fade-up">
+                小さな対象業務から始め、必要な範囲だけを広げる進め方に対応します。
+            </p>
+            <div class="text-center mt-12 fade-up">
+                <a href="#contact" class="cta-button">無料相談を予約する</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-32 md:py-40 px-6 md:px-12 border-t border-gray-900 bg-brand-black/35 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-4xl mx-auto fade-up">
+                <span class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500">Questions</span>
+                <h2 class="font-serif text-4xl md:text-6xl mt-4">よくあるご相談</h2>
+                <p class="font-sans text-base leading-loose text-gray-400 mt-8">
+                    導入順序、PoCの切り方、社内データの扱いまで、初回相談の前によくいただく質問を整理しています。
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 mt-16">
+                <div class="border-t border-gray-800 pt-5 fade-up">
+                    <h3 class="font-serif text-2xl mb-4">OpenClawとClaude Codeの違いは何ですか。</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">OpenClawは業務フローや運用体制に組み込む前提の設計対象、Claude Codeは開発・調査・改善を前に進める実務ツールとして扱うことが多く、対象業務に応じて役割を分けて導入します。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.1s;">
+                    <h3 class="font-serif text-2xl mb-4">ChatGPT / Gemini / Manus はどう使い分けますか。</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">文章生成、要約、調査、長文理解、実行フローとの相性、社内利用条件を見て選定します。用途別に使い分ける構成にも対応します。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.15s;">
+                    <h3 class="font-serif text-2xl mb-4">どこから始めるべきですか。</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">繰り返し発生し、判断基準を言語化しやすく、成果を測りやすい業務から始めるのが基本です。営業の接触オペレーション、社内ナレッジ検索、SEO調査は初手にしやすいテーマです。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.2s;">
+                    <h3 class="font-serif text-2xl mb-4">PoCから始められますか。</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">可能です。まず限定範囲でPoCを行い、必要な連携、精度、運用負荷を確認した上で本番導入へ進めます。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.25s;">
+                    <h3 class="font-serif text-2xl mb-4">社内データや権限管理に対応できますか。</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">Slack、Notion、Google Workspace、CRM、社内APIなどとの連携に加え、参照範囲、権限、承認フロー、ログ、ガードレールまで含めて設計します。</p>
+                </div>
+                <div class="border-t border-gray-800 pt-5 fade-up" style="transition-delay: 0.3s;">
+                    <h3 class="font-serif text-2xl mb-4">小規模チームでも依頼できますか。</h3>
+                    <p class="font-sans text-sm leading-loose text-gray-400">可能です。少人数で営業、マーケティング、オペレーションを回している組織ほど、対象業務を絞った導入が機能しやすいケースがあります。</p>
+                </div>
+            </div>
+            <div class="text-center mt-20 fade-up">
+                <a href="#contact" class="cta-button">無料相談を予約する</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
     <section class="py-32 bg-brand-gray/20 border-y border-gray-900">
         <div class="max-w-4xl mx-auto px-6 text-center fade-up">
-            <p class="font-serif text-2xl md:text-4xl leading-relaxed italic text-gray-300">
-                "We don't just write code.<br>
-                We architect the minds of tomorrow's enterprises."
+            <span class="font-sans text-xs tracking-[0.2em] uppercase text-gray-500">Start with Clarity</span>
+            <h2 class="font-serif text-4xl md:text-6xl mt-6 mb-8">まずは、<br>対象業務の整理から。</h2>
+            <p class="font-sans text-base leading-loose text-gray-400 max-w-3xl mx-auto">
+                営業自動化、社内ナレッジ検索 / RAG、OpenClaw / Claude Code導入の多くは、最初から大きく始める必要はありません。<br class="hidden md:block">
+                どの業務を対象にするか、どのデータを使うか、どこで人が確認するかを整理するだけでも、進め方は大きく変わります。
             </p>
+            <div class="mt-10">
+                <a href="#contact" class="cta-button">無料相談を予約する</a>
+            </div>
         </div>
     </section>
 
@@ -239,9 +572,9 @@
     <section id="contact" class="py-32 md:py-48 px-6 md:px-12 relative">
         <div class="max-w-3xl mx-auto text-center fade-up">
             <h2 class="font-serif text-4xl md:text-6xl mb-8">Initiate<br>a Project.</h2>
-            <p class="font-sans text-gray-400 mb-12 leading-relaxed">
-                次世代のAIエージェントによる業務革新について、<br class="hidden md:block">
-                まずは一度、ご相談ください。
+            <p class="font-sans text-gray-400 mb-12 leading-loose">
+                現状の業務、利用中のツール、検討中のテーマが未整理でも問題ありません。<br class="hidden md:block">
+                初回相談では、対象業務の優先順位、想定する連携先、PoCか本番導入かの切り分けまで整理します。
             </p>
             
             <form class="space-y-8 text-left border border-gray-800 p-8 md:p-12 bg-brand-black/50 backdrop-blur-md">
@@ -261,12 +594,12 @@
                 </div>
                 <div class="border-b border-gray-800 pb-2">
                     <label class="block font-sans text-xs tracking-widest text-gray-500 uppercase mb-2">Project Details</label>
-                    <textarea class="w-full bg-transparent border-none outline-none text-brand-light font-serif text-lg placeholder-gray-700 resize-none h-24" placeholder="Briefly describe your challenge..."></textarea>
+                    <textarea class="w-full bg-transparent border-none outline-none text-brand-light font-serif text-lg placeholder-gray-700 resize-none h-28" placeholder="対象業務、利用中のツール、検討中のテーマをご記載ください。"></textarea>
                 </div>
                 
                 <div class="pt-6 text-center">
                     <button type="button" class="font-sans text-sm tracking-[0.2em] uppercase text-brand-black bg-brand-light py-4 px-12 hover:bg-gray-300 transition-colors duration-300">
-                        Send Inquiry
+                        無料相談を予約する
                     </button>
                 </div>
             </form>
